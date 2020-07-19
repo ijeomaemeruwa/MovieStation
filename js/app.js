@@ -9,9 +9,9 @@ async function homePage(getMovie) {
   header.innerHTML = `<h2 class="header-text">UPCOMING MOVIES...</h2>`;
 
   movieShowcase.innerHTML = data.results.map(movie => `
-     <div class="movie-results">
+     <div class="movie-results thumbnail">
 
-     <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" />
+     <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" class="img-responsive"/>
 
      <div class="movie-info" data-movieID= "${movie.id}">
      <h6>${movie.title}</h6>
@@ -23,11 +23,14 @@ async function homePage(getMovie) {
 
 //Get Movie ID and display on the DOM
 async function getMovieById(movieID) {
-  const response = await fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${key}`);
-  const data = await response.json();
-  console.log(data);
 
-  const details = data.results[0];
+  movieShowcase.innerHTML = '';
+
+  const res = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${key}`);
+  const dataResponse = await res.json();
+  console.log(dataResponse);
+
+   const details = dataResponse.results[0];
   
 
   addInfoToDOM();
@@ -38,7 +41,7 @@ function addInfoToDOM() {
    infoSection.innerHTML = data.results.map(movie => `
      <div class="info-section>
       <h1>${movie.title}</h1>
-      <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" />
+      <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" class="img-responsive" />
 
       <div class="details">
       <h6>${movie.title}</h6>
@@ -52,8 +55,12 @@ function addInfoToDOM() {
 }
 
 //Get new set of upcoming movies on page reload
-function getUpcomingMovies() {
+async function getUpcomingMovies() {
+  const randomRes = await fetch(``);
+  const randomData = await randomRes.json();
+  console.log(randomData);
 
+  homePage();
 }
 
 
@@ -67,7 +74,7 @@ movieShowcase.addEventListener('click', (e) => {
     }
   });
   if(movieInfo) {
-    const movieID = movieInfo.getAttribute('data-movieID');
+    const movieID = movieInfo.querySelector('data-movieID');
 
     getMovieById(movieID);
   }
