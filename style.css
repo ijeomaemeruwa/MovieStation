@@ -1,0 +1,134 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--primary-color);
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-color: #292a2e;
+    --secondary-color: #f35127;
+    --tertiary-color: #fff;
+    --overlay-color: rgba(0, 0, 0, 0.3);
+}
+
+
+.header-container {
+    height: 300px;
+    position: relative;
+    max-width: 100%;
+    background: url('./img/holmes.jpg') no-repeat bottom center/cover;
+    color: var(--tertiary-color)
+
+}
+ 
+.inner-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    max-width: 100%;
+    padding: 5rem 0;
+}
+
+h1 {
+    color: var(--secondary-color)
+}
+
+p {
+    font-size: 1rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.btn {
+    color: var(--tertiary-color);
+    border: 1px solid var(--tertiary-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+    color: var(--tertiary-color);
+    border: none;
+
+}
+i {
+    margin: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 25px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.header-text {
+    color: var(--tertiary-color);
+    padding: 20px;
+    text-align: center;
+}
+
+.movie-results {
+    color: #ffd8a7;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+
+}
+
+.movie-results img {
+    border-radius: 10px;
+    box-shadow: -5px -5px 10px #2d2d2d,
+                5px 5px 10px #393939;
+}
+
+ 
+
+
+
+/* Media queries */
+@media screen and (max-width: 480px) {
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 1024px) {
+
+}
+
+@media screen and (max-width: 1440px) {
+
+}
