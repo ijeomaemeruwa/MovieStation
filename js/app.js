@@ -13,70 +13,54 @@ async function homePage(getMovie) {
 
      <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" class="img-responsive"/>
 
-     <div class="movie-info" data-movieId= "${movie.id}">
+     <div class="movie-info">
      <h6>${movie.title}</h6>
+     <a onclick="getMovieById('${movie.id}')" href="#" class="btn">Details</a>
      </div>
-     </div>
+     </div> 
   `)
   .join('');
 }
 
-//Get Movie details
-movieShowcase.addEventListener('click', (e) => {
-  const movieInfo = e.path.find(item => {
-    if(item.classList) {
-      return item.classList.contains("movie-info");
-    } else {
-      return false;
-    }
-  });
-  
-  if(movieInfo) {
-    const movieData = movieInfo.getAttribute('data-movieId');
+//Add Movie Details and add to the DOM
+function getMovieById(id) {
+  sessionStorage.setItem('movieID', id);
+  window.location = 'movie.html';
+  return false;
+}
 
-    getMovieById(movieData);
-  }
-});
+async function getMovieDetails() {
+  let movieID = sessionStorage.getItem('movieID');
 
-
-//Get Movie ID from API and display on the DOM
-async function getMovieById(movieData) {
-
-  movieShowcase.innerHTML = '';
-
-  const res = await fetch(`https://api.themoviedb.org/3/{movie_id}movie/?api_key=${key}&query=${movieData}`);
+  const res = await fetch(`https://api.themoviedb.org/3/query=${movieID}movie/?api_key=${key}`);
   const dataResponse = await res.json();
   console.log(dataResponse);
 
-   const details = dataResponse.results[0];
-  
+  let movie= res.dataResponse; 
 
-  addInfoToDOM();
+  infoSection.innerHTML = `
+  <div class="row">
+  <div class="col-md-4">
+  <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" class="img-responsive" />
+  </div>
+  <div class="col-md-8">
+  <h6>${movie.title}</h6>
+  ${movie.overview}
+  ${movie.genre_ids}
+  ${movie.status}
+  ${movie.release_date}
+  </div>
+ </div>
+  `
 }
-
-// Add movie details to the DOM
-function addInfoToDOM() {
-   infoSection.innerHTML = data.results.map(movie => `
-     <div class="info-section>
-      <h1>${movie.title}</h1>
-      <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" class="img-responsive" />
-
-      <div class="details">
-      <h6>${movie.title}</h6>
-      ${movie.overview}
-      ${movie.genre_ids}
-      ${movie.release_date}
-      </div>
-     </div>
-   `
-   );
-}
-
 
 
 //Add Event Listeners To home search button
-
 home.addEventListener('click', homePage);
+
+
+
+
 
 
 
