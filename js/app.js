@@ -1,4 +1,6 @@
 
+
+
 // Fetch API and Display Upcoming movies
 async function homePage(getMovie) {
 
@@ -20,9 +22,10 @@ async function homePage(getMovie) {
      </div> 
   `)
   .join('');
-}
+};
 
-//Add Movie Details and add to the DOM
+
+//Fetch Movie Details API, add session storage and add details to the DOM
 function getMovieById(id) {
   sessionStorage.setItem('movieID', id);
   window.location = 'movie.html';
@@ -32,13 +35,12 @@ function getMovieById(id) {
 async function getMovieDetails() {
   let movieID = sessionStorage.getItem('movieID');
 
-  const res = await fetch(`https://api.themoviedb.org/3/query=${movieID}movie/?api_key=${key}`);
+  const res = await fetch(`https://api.themoviedb.org/3/${movieID}/?api_key=${key}`);
   const dataResponse = await res.json();
   console.log(dataResponse);
 
-  let movie= res.dataResponse; 
 
-  infoSection.innerHTML = `
+  infoSection.innerHTML = dataResponse.results.map(movie =>`
   <div class="row">
   <div class="col-md-4">
   <img src= "https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movie.poster_path}" alt= "${movie.title}" class="img-responsive" />
@@ -46,18 +48,17 @@ async function getMovieDetails() {
   <div class="col-md-8">
   <h6>${movie.title}</h6>
   ${movie.overview}
-  ${movie.genre_ids}
+  ${movie.genres}
   ${movie.status}
   ${movie.release_date}
   </div>
  </div>
-  `
+  `);
 }
 
 
 //Add Event Listeners To home search button
 home.addEventListener('click', homePage);
-
 
 
 

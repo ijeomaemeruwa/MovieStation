@@ -34,19 +34,17 @@ body {
     text-align: center;
     margin: auto;
     max-width: 100%;
-    padding: 5rem 0;
-    line-height: 20px;
-    
+    padding: 4rem 0;    
 }
 
 h1 {
-    color: var(--secondary-color)
+    color: var(--secondary-color);
+    font-size: 3em;
 }
 
 p {
-    font-size: 1rem;
+    font-size: 2em;
 }
-
 
 
 .btn {
@@ -55,9 +53,10 @@ p {
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     text-align: center;
     align-items: center;
+    width: 150px;
 }
 
 .btn:hover {
@@ -67,14 +66,13 @@ p {
 
 }
 
+/*Movie Container */
 
 .header-text {
     color: var(--tertiary-color);
     padding: 20px;
     text-align: center;
 }
-
-/*Movie Container */
 
 .movie-layout {
     display: grid;
@@ -87,6 +85,7 @@ p {
 .movie-results {
     color: #ffd8a7;
     background: #393939;
+    border-radius: 10px;
     cursor: pointer;
     text-align: center;
     max-width: 100%;
@@ -111,7 +110,7 @@ h6 {
 
 
 /* Media queries */
-/*
+
 @media (max-width: 575.98px) {
 
    .header-container {
@@ -123,30 +122,18 @@ h6 {
     }
 
     .btn {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
-   
-}
-
-@media (max-width: 767.98px) {
-    .movie-layout {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 991.98px) {
-    .movie-layout {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
     h1 {
-      font-size: 3rem;
+      font-size: 2em;
     }
 
     p {
-       font-size: 2rem;
+       font-size: 1em;
     }
 }
+
+
 
 
 
