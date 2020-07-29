@@ -25,7 +25,7 @@ body {
 .header-container {
     height: 300px;
     max-width: 100%;
-    background: url('./img/holmes.jpg') no-repeat bottom center/cover;
+    background: url('./img/holmes.jpg') no-repeat center/cover;
     color: var(--tertiary-color);
     
 }
